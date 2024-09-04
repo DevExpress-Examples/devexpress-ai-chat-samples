@@ -1,5 +1,4 @@
 ﻿@page "/custommessage"
-@using Markdig;
 @using DevExpress.AIIntegration.Blazor.Chat
 @using AIIntegration.Services.Chat;
 
@@ -10,7 +9,7 @@
                 <span>Loading...</span>
             } else {
                 <div class="my-chat-content">
-                    @ToHtml(context.Content)
+                    @context.Content
                 </div>
             }
         </div>
@@ -18,10 +17,6 @@
 </DxAIChat>
 
 @code {
-    MarkupString ToHtml(string text) {
-        return (MarkupString)Markdown.ToHtml(text);
-    }
-
     string GetMessageClasses(ChatMessage message) {
         if(message.Role == ChatMessageRole.Assistant) {
             return "my-chat-message my-assistant-message";

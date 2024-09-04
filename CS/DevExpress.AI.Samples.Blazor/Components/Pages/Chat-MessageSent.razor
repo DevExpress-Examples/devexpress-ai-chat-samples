@@ -1,21 +1,10 @@
 ﻿@page "/messagesent"
-@using Markdig;
 @using DevExpress.AIIntegration.Blazor.Chat
 @using AIIntegration.Services.Chat;
 
-<DxAIChat CssClass="my-chat" MessageSent="MessageSent">
-    <MessageContentTemplate>
-        <div class="my-chat-content">
-            @ToHtml(context.Content)
-        </div>
-    </MessageContentTemplate>
-</DxAIChat>
+<DxAIChat CssClass="my-chat" MessageSent="MessageSent" />
 
 @code {
-    MarkupString ToHtml(string text) {
-        return (MarkupString)Markdown.ToHtml(text);
-    }
-
     void MessageSent(MessageSentEventArgs args) {
         var message = new Message(MessageRole.Assistant, $"Processed: {args.Content}");
         args.SendMessage(message);
