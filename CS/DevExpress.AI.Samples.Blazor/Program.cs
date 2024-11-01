@@ -1,7 +1,9 @@
-﻿using Azure.AI.OpenAI;
+﻿using System.ClientModel;
+using Azure.AI.OpenAI;
 using Azure;
 using DevExpress.AI.Samples.Blazor.Components;
 using DevExpress.AIIntegration;
+using Microsoft.Extensions.AI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +16,12 @@ string azureOpenAIKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY
 
 builder.Services.AddDevExpressBlazor();
 builder.Services.AddDevExpressAI((config) => {
-    var client = new AzureOpenAIClient(
+    var azureClient = new AzureOpenAIClient(
         new Uri(azureOpenAIEndpoint),
-        new AzureKeyCredential(azureOpenAIKey));
-    config.RegisterChatClientOpenAIService(client, "gpt4o");
-    config.RegisterOpenAIAssistants(client, "gpt4o");
+        new ApiKeyCredential(azureOpenAIKey));
+    config.RegisterChatClient(azureClient.AsChatClient("gpt4o"));
+    //Reference the DevExpress.AIIntegration.OpenAI NuGet package to use Open AI Asisstants
+    config.RegisterOpenAIAssistants(azureClient, "gpt4o"); 
 });
 var app = builder.Build();
 

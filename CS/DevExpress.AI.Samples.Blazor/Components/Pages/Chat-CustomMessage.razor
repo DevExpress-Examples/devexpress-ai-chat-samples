@@ -6,18 +6,18 @@
     <MessageTemplate>
         <div class="@GetMessageClasses(context)">
             @if(context.Typing) {
-                <span>Loading...</span>
+            <span>Loading...</span>
             } else {
-                <div class="my-chat-content">
-                    @context.Content
-                </div>
+            <div class="my-chat-content">
+                @context.Content
+            </div>
             }
         </div>
     </MessageTemplate>
 </DxAIChat>
 
 @code {
-    string GetMessageClasses(ChatMessage message) {
+    string GetMessageClasses(BlazorChatMessage message) {
         if(message.Role == ChatMessageRole.Assistant) {
             return "my-chat-message my-assistant-message";
         } else if(message.Role == ChatMessageRole.User) {

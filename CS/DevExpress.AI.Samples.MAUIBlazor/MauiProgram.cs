@@ -1,8 +1,9 @@
-﻿using Azure;
+﻿using System.ClientModel;
+using Azure;
 using Azure.AI.OpenAI;
-using DevExpress.AIIntegration;
 using DevExpress.Maui;
 using DevExpress.Maui.Core;
+using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Logging;
 
 namespace DevExpress.AI.Samples.MAUIBlazor;
@@ -24,13 +25,14 @@ public static class MauiProgram {
         string azureOpenAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!;
         string azureOpenAIKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!;
 
+        var chatClient = new AzureOpenAIClient(
+            new Uri(azureOpenAIEndpoint),
+            new ApiKeyCredential(azureOpenAIKey)).AsChatClient("gpt4o");
+        
         builder.Services.AddMauiBlazorWebView();
         builder.Services.AddDevExpressBlazor();
         builder.Services.AddDevExpressAI((config) => {
-            config.RegisterChatClientOpenAIService(
-                new AzureOpenAIClient(
-                new Uri(azureOpenAIEndpoint),
-                new AzureKeyCredential(azureOpenAIKey)), "gpt4o");
+            config.RegisterChatClient(chatClient);
         });
         builder.Services.AddSingleton<ISelfEncapsulationService, DxChatEncapsulationService>();
 

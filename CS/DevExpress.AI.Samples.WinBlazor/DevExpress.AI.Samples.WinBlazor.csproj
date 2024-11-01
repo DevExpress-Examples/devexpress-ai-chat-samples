@@ -7,19 +7,19 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <StartupObject>DevExpress.AI.Samples.WinBlazor.Program</StartupObject>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DevExpress.AIIntegration.Azure.OpenAI" Version="24.2.1-alpha-24241" />
-    <PackageReference Include="DevExpress.AIIntegration.Blazor.Chat" Version="24.2.1-alpha-24241" />
-    <PackageReference Include="DevExpress.AIIntegration.Blazor.Common" Version="24.2.1-alpha-24241" />
-    <PackageReference Include="DevExpress.AIIntegration.Desktop" Version="24.2.1-alpha-24241" />
-    <PackageReference Include="DevExpress.AIIntegration.Web" Version="24.2.1-alpha-24241" />
-    <PackageReference Include="DevExpress.Win.Design" Version="24.2.1-alpha-24241" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="8.0.70" />
+    <PackageReference Include="Azure.AI.OpenAI" Version="2.0.0" />
+    <PackageReference Include="DevExpress.AIIntegration.WinForms.Chat" Version="24.2.1-alpha-24305" />
+    <PackageReference Include="Markdig" Version="0.37.0" />
+    <PackageReference Include="Microsoft.Extensions.AI.Abstractions" Version="9.0.0-preview.9.24525.1" />
+    <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.0.0-preview.9.24525.1" />
+    <PackageReference Include="DevExpress.Win.Design" Version="24.2.1-alpha-24305" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DevExpress.AI.Samples.Blazor\DevExpress.AI.Samples.Blazor.csproj" />
+    <_ContentIncludedByDefault Remove="wwwroot\index.html" />
   </ItemGroup>
 </Project>

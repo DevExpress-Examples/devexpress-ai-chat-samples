@@ -3,7 +3,7 @@
 @using DevExpress.AIIntegration.Blazor.Chat
 @using AIIntegration.Services.Chat;
 
-<DxAIChat CssClass="my-chat" RenderMode="AnswerRenderMode.Markdown">
+<DxAIChat CssClass="my-chat" ResponseContentFormat="ResponseContentFormat.Markdown">
     <MessageContentTemplate>
         <div class="my-chat-content">
             @ToHtml(context.Content)

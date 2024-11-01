@@ -12,7 +12,7 @@ namespace DevExpress.AI.Samples.WPFBlazor
 
     class DxChatEncapsulationService : ISelfEncapsulationService
     {
-        public WpfChatUIWrapper DxChatUI { get; set; }
+        public WpfChatUIWrapper? DxChatUI { get; set; }
         public void Initialize(WpfChatUIWrapper dxChatUI)
         {
             this.DxChatUI = dxChatUI;
@@ -35,6 +35,7 @@ namespace DevExpress.AI.Samples.WPFBlazor
         }
     }
 
-    public class MyDictionary : Dictionary<string, object> { 
+    public class MyDictionary : Dictionary<string, object>
+    {
     }
 }

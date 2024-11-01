@@ -43,17 +43,18 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="DevExpress.Data" Version="24.2.1-alpha-24240" />
+        <PackageReference Include="DevExpress.Data" Version="24.2.1-alpha-24305" />
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 
-        <PackageReference Include="DevExpress.AIIntegration.Azure.OpenAI" Version="24.2.1-alpha-24241" />
-        <PackageReference Include="DevExpress.AIIntegration.Blazor.Chat" Version="24.2.1-alpha-24241" />
-        <PackageReference Include="DevExpress.AIIntegration.Blazor.Common" Version="24.2.1-alpha-24241" />
-        <PackageReference Include="DevExpress.AIIntegration.Web" Version="24.2.1-alpha-24241" />
-        <PackageReference Include="DevExpress.Maui.Editors" Version="24.2.1-alpha-24239-25131" />
+        <PackageReference Include="Azure.AI.OpenAI" Version="2.0.0" />
+        <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.0.0-preview.9.24525.1" />
+        <PackageReference Include="DevExpress.AIIntegration.Blazor.Chat" Version="24.2.1-alpha-24305" />
+        <PackageReference Include="DevExpress.AIIntegration.Blazor.Common" Version="24.2.1-alpha-24305" />
+        <PackageReference Include="DevExpress.AIIntegration.Web" Version="24.2.1-alpha-24305" />
+        <PackageReference Include="DevExpress.Maui.Editors" Version="24.2.*-*" />
     </ItemGroup>
 
 </Project>
