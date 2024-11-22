@@ -26,7 +26,6 @@ Add the following code to the _Program.cs_ file to register the AI Chat service 
 
 ```cs
 using Azure.AI.OpenAI;
-using DevExpress.AI.Samples.Blazor.Components;
 using DevExpress.AIIntegration;
 using Microsoft.Extensions.AI;
 using System.ClientModel;
@@ -43,10 +42,6 @@ builder.Services.AddDevExpressBlazor();
 builder.Services.AddChatClient(cfg => 
     cfg.Use(azureClient.AsChatClient((deploymentName)))
 );
-builder.Services.AddDevExpressAI((config) => {
-    //Reference the DevExpress.AIIntegration.OpenAI NuGet package to use Open AI Asisstants
-    config.RegisterOpenAIAssistants(azureClient, "gpt4o"); 
-});
 ```
 
 File to review: [Program.cs](./CS/DevExpress.AI.Samples.Blazor/Program.cs)
@@ -165,8 +160,8 @@ Add the following code to the _Program.cs_ file to register AI Assistant service
 
 ```cs
 builder.Services.AddDevExpressAI((config) => {
-    ...
-    config.RegisterOpenAIAssistants(azureClient, "gpt4o");
+    //Reference the DevExpress.AIIntegration.OpenAI NuGet package to use Open AI Asisstants
+    config.RegisterOpenAIAssistants(azureClient, "gpt4o"); 
 });
 ```
 
