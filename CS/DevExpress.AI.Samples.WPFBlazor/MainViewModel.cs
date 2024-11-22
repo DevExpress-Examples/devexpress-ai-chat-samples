@@ -4,6 +4,8 @@ using Azure;
 using Azure.AI.OpenAI;
 using DevExpress.Mvvm;
 using DevExpress.AIIntegration;
+using System.ClientModel;
+using Microsoft.Extensions.AI;
 
 namespace DevExpress.AI.Samples.WPFBlazor {
     class MainViewModel : BindableBase {
@@ -37,14 +39,15 @@ namespace DevExpress.AI.Samples.WPFBlazor {
             string azureOpenAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
             string azureOpenAIKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
 
+            var chatClient = new AzureOpenAIClient(
+                    new Uri(azureOpenAIEndpoint),
+                    new ApiKeyCredential(azureOpenAIKey)).AsChatClient("gpt4o");
+
             services.AddWpfBlazorWebView();
             services.AddDevExpressBlazor();
             services.AddDevExpressAI((config) =>
             {
-                config.RegisterChatClientOpenAIService(
-                    new AzureOpenAIClient(
-                    new Uri(azureOpenAIEndpoint),
-                    new AzureKeyCredential(azureOpenAIKey)), "gpt4o");
+                config.RegisterChatClient(chatClient);
             });
             services.AddSingleton<ISelfEncapsulationService>(service);
 
@@ -53,9 +56,7 @@ namespace DevExpress.AI.Samples.WPFBlazor {
 
         void SendMesssage()
         {
-            service.DxChatUI.CurrentMessage = Message;
-            Message = null;
-            service.DxChatUI.SendButton?.Click.InvokeAsync();
+            service.DxChatUI?.SendMessage(Message, ChatRole.User);
         }
 
         bool CanSendMessage()

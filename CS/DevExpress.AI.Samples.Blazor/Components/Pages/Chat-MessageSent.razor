@@ -5,8 +5,7 @@
 <DxAIChat CssClass="my-chat" MessageSent="MessageSent" />
 
 @code {
-    void MessageSent(MessageSentEventArgs args) {
-        var message = new Message(MessageRole.Assistant, $"Processed: {args.Content}");
-        args.SendMessage(message);
+    async Task MessageSent(MessageSentEventArgs args) {
+        await args.Chat.SendMessage($"Processed: {args.Content}", Microsoft.Extensions.AI.ChatRole.Assistant);
     }
 }

@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DevExpress.AIIntegration.Azure.OpenAI" Version="24.2.1-alpha-24241" />
-    <PackageReference Include="DevExpress.AIIntegration.Blazor.Chat" Version="24.2.1-alpha-24241" />
-    <PackageReference Include="DevExpress.AIIntegration.Blazor.Common" Version="24.2.1-alpha-24241" />
-    <PackageReference Include="DevExpress.AIIntegration.Web" Version="24.2.1-alpha-24241" />
-    <PackageReference Include="Markdig" Version="0.37.0" />
+    <PackageReference Include="Azure.AI.OpenAI" Version="2.1.0-beta.1" />
+    <PackageReference Include="DevExpress.AIIntegration.Blazor" Version="24.2.1-alpha-24305" />
+    <PackageReference Include="DevExpress.AIIntegration.OpenAI" Version="24.2.1-alpha-24305" />
+    <PackageReference Include="Markdig" Version="0.38.0" />
+    <PackageReference Include="Microsoft.Extensions.AI" Version="9.0.0-preview.9.24556.5" />
+    <PackageReference Include="Microsoft.Extensions.AI.Abstractions" Version="9.0.0-preview.9.24556.5" />
+    <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.0.0-preview.9.24556.5" />
     <EmbeddedResource Include="Data\Restaurant Menu.pdf" />
   </ItemGroup>
 </Project>
