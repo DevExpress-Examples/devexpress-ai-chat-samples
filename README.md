@@ -205,7 +205,7 @@ Keys to implementation are as follows:
 
 Folders to review: [DevExpress.AI.Samples.MAUIBlazor](./CS/DevExpress.AI.Samples.MAUIBlazor/), [DevExpress.AI.Samples.WPFBlazor](./CS/DevExpress.AI.Samples.WPFBlazor/)
 
-For WinForms apps, use the built-in `AIChatControl` component. Refer to the following help topic to learn more about the integration steps: [AI Chat Control Documentation](https://docs.devexpress.com/WindowsForms/405218/ai-powered-extensions/ai-chat-control)
+For WinForms apps, use the built-in `AIChatControl` component. Refer to the following help topic to learn more about the integration steps: [AI Chat Control Documentation](https://docs.devexpress.com/WindowsForms/405218/ai-powered-extensions/ai-chat-control?v=24.2)
 
 Folders to review: [DevExpress.AI.Samples.WinBlazor](./CS/DevExpress.AI.Samples.WinBlazor/)
 
