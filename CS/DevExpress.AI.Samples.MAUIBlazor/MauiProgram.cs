@@ -22,18 +22,18 @@ public static class MauiProgram {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
             });
 
-        string azureOpenAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!;
-        string azureOpenAIKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!;
+        string azureOpenAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+        string azureOpenAIKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
 
-        var chatClient = new AzureOpenAIClient(
-            new Uri(azureOpenAIEndpoint),
-            new ApiKeyCredential(azureOpenAIKey)).AsChatClient("gpt4o");
-        
         builder.Services.AddMauiBlazorWebView();
         builder.Services.AddDevExpressBlazor();
-        builder.Services.AddDevExpressAI((config) => {
-            config.RegisterChatClient(chatClient);
-        });
+        builder.Services.AddDevExpressAI();
+        builder.Services.AddChatClient(
+            new AzureOpenAIClient(
+                new Uri(azureOpenAIEndpoint), 
+                new ApiKeyCredential(azureOpenAIKey)
+            ).AsChatClient("gpt4o")
+        );
         builder.Services.AddSingleton<ISelfEncapsulationService, DxChatEncapsulationService>();
 
 #if DEBUG
