@@ -27,7 +27,7 @@ namespace DevExpress.AI.Samples.WinBlazor
             Controls.Add(chat);
         }
 
-        private void Chat_MarkdownConvert(object? sender, AIIntegration.Chat.Core.AIChatControlMarkdownConvertEventArgs e)
+        private void Chat_MarkdownConvert(object? sender, AIIntegration.Blazor.Chat.WebView.AIChatControlMarkdownConvertEventArgs e)
         {
             e.HtmlText = (MarkupString)Markdown.ToHtml(e.MarkdownText);
         }

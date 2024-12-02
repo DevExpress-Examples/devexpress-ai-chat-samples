@@ -45,10 +45,8 @@ namespace DevExpress.AI.Samples.WPFBlazor {
 
             services.AddWpfBlazorWebView();
             services.AddDevExpressBlazor();
-            services.AddDevExpressAI((config) =>
-            {
-                config.RegisterChatClient(chatClient);
-            });
+            services.AddSingleton(chatClient);
+            services.AddDevExpressAI((config) => {});
             services.AddSingleton<ISelfEncapsulationService>(service);
 
             ServiceProvider = services.BuildServiceProvider();
