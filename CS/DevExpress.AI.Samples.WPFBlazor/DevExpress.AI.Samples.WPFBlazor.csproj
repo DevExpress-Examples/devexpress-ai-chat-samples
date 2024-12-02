@@ -12,10 +12,10 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.AI.OpenAI" Version="2.0.0" />
-    <PackageReference Include="DevExpress.AIIntegration.Blazor.Chat" Version="24.2.1-alpha-24305" />
-    <PackageReference Include="DevExpress.AIIntegration.Blazor.Common" Version="24.2.1-alpha-24305" />
-    <PackageReference Include="DevExpress.AIIntegration.Web" Version="24.2.1-alpha-24305" />
-    <PackageReference Include="DevExpress.Wpf.Core" Version="24.2.1-alpha-24305" />
+    <PackageReference Include="DevExpress.AIIntegration.Blazor.Chat" Version="24.2.2-beta" />
+    <PackageReference Include="DevExpress.AIIntegration.Blazor.Common" Version="24.2.2-beta" />
+    <PackageReference Include="DevExpress.AIIntegration.Web" Version="24.2.2-beta" />
+    <PackageReference Include="DevExpress.Wpf.Core" Version="24.2.2-beta" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.70" />
     <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.0.0-preview.9.24525.1" />
   </ItemGroup>
