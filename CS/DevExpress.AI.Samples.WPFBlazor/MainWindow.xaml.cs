@@ -1,18 +1,16 @@
-﻿using System.Windows.Input;
+﻿using Microsoft.AspNetCore.Components;
 
-namespace DevExpress.AI.Samples.WPFBlazor
-{
-    public partial class MainWindow
-    {
-        public MainWindow()
-        {
+namespace WPF_AIChatControl {
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : DevExpress.Xpf.Core.ThemedWindow {
+        public MainWindow() {
             InitializeComponent();
         }
 
-        private void OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-                SendMessageButton.Command?.Execute(null);
+        void AIChatControl_MarkdownConvert(object sender, DevExpress.AIIntegration.Blazor.Chat.WebView.AIChatControlMarkdownConvertEventArgs e) {
+            e.HtmlText = (MarkupString)Markdig.Markdown.ToHtml(e.MarkdownText);
         }
     }
 }
