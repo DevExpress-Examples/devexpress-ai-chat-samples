@@ -160,7 +160,7 @@ Add the following code to the _Program.cs_ file to register AI Assistant service
 
 ```cs
 builder.Services.AddDevExpressAI((config) => {
-    //Reference the DevExpress.AIIntegration.OpenAI NuGet package to use Open AI Asisstants
+    //Reference the DevExpress.AIIntegration.OpenAI NuGet package to use Open AI Assistants
     config.RegisterOpenAIAssistants(azureClient, "gpt4o"); 
 });
 ```
@@ -203,6 +203,7 @@ Keys to implementation are as follows:
 * Custom CSS classes hide the built-in input field and the Send button (see _index.html_).
 
 Folders to review: [DevExpress.AI.Samples.MAUIBlazor](./CS/DevExpress.AI.Samples.MAUIBlazor/), [DevExpress.AI.Samples.WPFBlazor](./CS/DevExpress.AI.Samples.WPFBlazor/)
+For more information on how to use AI extensions in WPF apps, refer to the following help topic: [AI-powered Extensions for WPF](https://docs.devexpress.com/WPF/405223/ai-powered-extensions?v=24.2)
 
 For WinForms apps, use the built-in `AIChatControl` component. Refer to the following help topic to learn more about the integration steps: [AI Chat Control Documentation](https://docs.devexpress.com/WindowsForms/405218/ai-powered-extensions/ai-chat-control?v=24.2)
 
