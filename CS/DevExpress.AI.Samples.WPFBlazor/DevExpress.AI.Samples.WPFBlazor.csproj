@@ -7,15 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <PackageReference Include="Azure.AI.OpenAI" Version="2.1.0-beta.2" />
+      <PackageReference Include="Azure.AI.OpenAI" Version="2.1.0" />
       <PackageReference Include="DevExpress.AIIntegration.Blazor.Chat.WebView" Version="24.2.*-*" />
       <PackageReference Include="DevExpress.AIIntegration.Desktop" Version="24.2.*-*" />
       <PackageReference Include="DevExpress.AIIntegration.OpenAI" Version="24.2.*-*" />
       <PackageReference Include="DevExpress.AIIntegration.Wpf" Version="24.2.*-*" />
       <PackageReference Include="DevExpress.Wpf.ThemesLW" Version="24.2.*-*" />
-      <PackageReference Include="Markdig" Version="0.38.0" />
-      <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.100" />
-      <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.0.0-preview.9.24556.5" />
+      <PackageReference Include="Markdig" Version="0.39.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="9.0.22" />
+      <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.0.1-preview.1.24570.5" />
   </ItemGroup>
 
 </Project>
