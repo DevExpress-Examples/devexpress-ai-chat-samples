@@ -237,7 +237,7 @@ Folders to review: [DevExpress.AI.Samples.WinBlazor](./CS/DevExpress.AI.Samples.
 
 ## Online Demo
 
-* [AI-powered Extensions: AI Chat](http://blazor/serverside-24.2/AI/Chat#Overview)
+* [AI-powered Extensions: AI Chat](https://demos.devexpress.com/blazor/AI/Chat#Overview)
 
 ## More Examples
 
