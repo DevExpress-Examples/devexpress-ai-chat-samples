@@ -157,6 +157,9 @@ File to review: [Chat-Streaming.razor](./CS/DevExpress.AI.Samples.Blazor/Compone
 
 The DevExpress AI Chat ([DxAIChat](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat?v=24.2)) component supports [OpenAI Assistants](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-azure-openai-service-assistants-public-preview/ba-p/4143217). This allows you to specify a model and supply supplementary documents (external knowledge). OpenAI parses these documents and searches through them to retrieve relevant content to answer user queries.
 
+> [!NOTE]  
+> Availability of Azure Open AI Assistants depends on the region. Refer to the following article for more details: [Assistants (Preview)](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#assistants-preview).
+
 Add the following code to the _Program.cs_ file to register AI Assistant service in the application:
 
 ```cs
