@@ -230,12 +230,18 @@ Folders to review: [DevExpress.AI.Samples.WinBlazor](./CS/DevExpress.AI.Samples.
 
 ## Documentation
 
+* [DevExpress AI-powered Extensions for Blazor](https://docs.devexpress.com/Blazor/405228/ai-powered-extensions)
+* [DevExpress Blazor AI Chat Control](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat)
 * [Create a Blazor Hybrid Project](https://docs.devexpress.com/Blazor/404118/get-started/create-project-hybrid)
+
+## Online Demo
+
+* [AI-powered Extensions: AI Chat](http://blazor/serverside-24.2/AI/Chat#Overview)
 
 ## More Examples
 
 * [Rich Text Editor and HTML Editor for Blazor - How to integrate AI-powered extensions](https://github.com/DevExpress-Examples/blazor-ai-integration-to-text-editors)
-
+* [Incorporate an AI Assistant (Azure OpenAI) in your next DevExpress-powered Blazor app](https://github.com/DevExpress-Examples/blazor-grid-and-report-viewer-integrate-ai-assistant)
 
 <!-- feedback -->
 ## Does this example address your development requirements/objectives?
