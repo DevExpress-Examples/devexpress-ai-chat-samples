@@ -46,6 +46,7 @@
         <PackageReference Include="DevExpress.Data" Version="24.2.3" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="9.0.22" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="[9.0.10,)" PrivateAssets="all" />
         <PackageReference Include="Azure.AI.OpenAI" Version="2.1.0" />
         <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.0.1-preview.1.24570.5" />
         <PackageReference Include="Microsoft.Extensions.AI" Version="9.0.1-preview.1.24570.5" />
