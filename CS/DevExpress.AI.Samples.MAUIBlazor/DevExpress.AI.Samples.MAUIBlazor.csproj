@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
-        <TargetFrameworks>net8.0-android;net8.0-ios</TargetFrameworks>
+        <TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
         <OutputType>Exe</OutputType>
         <RootNamespace>DevExpress.AI.Samples.MAUIBlazor</RootNamespace>
         <UseMaui>true</UseMaui>
@@ -22,6 +22,7 @@
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
+        <MauiVersion>9.0.10</MauiVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -44,9 +45,8 @@
 
     <ItemGroup>
         <PackageReference Include="DevExpress.Data" Version="24.2.3" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
-                <PackageReference Include="Microsoft.Maui.Controls" Version="[9.0.10,)" PrivateAssets="all" />
         <PackageReference Include="Azure.AI.OpenAI" Version="2.0.0" />
         <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.0.1-preview.1.24570.5" />
         <PackageReference Include="Microsoft.Extensions.AI" Version="9.0.1-preview.1.24570.5" />

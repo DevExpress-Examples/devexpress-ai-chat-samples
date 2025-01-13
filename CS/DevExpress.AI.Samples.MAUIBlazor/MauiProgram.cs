@@ -4,7 +4,6 @@ using Azure.AI.OpenAI;
 using DevExpress.Maui;
 using DevExpress.Maui.Core;
 using Microsoft.Extensions.AI;
-using Microsoft.Extensions.Logging;
 
 namespace DevExpress.AI.Samples.MAUIBlazor;
 
@@ -38,7 +37,6 @@ public static class MauiProgram {
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
-        builder.Logging.AddDebug();
 #endif
 
         return builder.Build();
