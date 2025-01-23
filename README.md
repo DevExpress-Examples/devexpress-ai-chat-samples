@@ -241,8 +241,8 @@ Folders to review: [DevExpress.AI.Samples.WinBlazor](./CS/DevExpress.AI.Samples.
 
 ## More Examples
 
-* [Rich Text Editor and HTML Editor for Blazor - How to integrate AI-powered extensions](https://github.com/DevExpress-Examples/blazor-ai-integration-to-text-editors)
-* [Incorporate an AI Assistant (Azure OpenAI) in your next DevExpress-powered Blazor app](https://github.com/DevExpress-Examples/blazor-grid-and-report-viewer-integrate-ai-assistant)
+* [Rich Text Editor and HTML Editor for Blazor — How to integrate AI-powered extensions](https://github.com/DevExpress-Examples/blazor-ai-integration-to-text-editors)
+* [Blazor Grid and Report Viewer — Incorporate an AI Assistant (Azure OpenAI) in your next DevExpress-powered Blazor app](https://github.com/DevExpress-Examples/blazor-grid-and-report-viewer-integrate-ai-assistant)
 
 <!-- feedback -->
 ## Does this example address your development requirements/objectives?
