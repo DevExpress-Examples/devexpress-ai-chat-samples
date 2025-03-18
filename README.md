@@ -40,12 +40,20 @@ var azureClient = new AzureOpenAIClient(
     new ApiKeyCredential(azureOpenAIKey));
 
 builder.Services.AddDevExpressBlazor();
-builder.Services.AddChatClient(cfg => 
-    cfg.Use(azureClient.AsChatClient((deploymentName)))
-);
+builder.Services.AddChatClient(azureClient);
 ```
 
 File to review: [Program.cs](./CS/DevExpress.AI.Samples.Blazor/Program.cs)
+
+> [!Tip]
+> Refer to the following help topic for instructions on registering OpenAI, Azure OpenAI, Ollama, and Semantic Kernel: [Register AI Clients](https://docs.devexpress.com/CoreLibraries/405204/ai-powered-extensions#register-ai-clients).
+
+> [!Note]
+> We use the following versions of the `Microsoft.Extensions.AI.*` libraries in our source code:
+>
+> v24.2.6+ | 9.3.0-preview.1.25161.3
+>
+> We do not guarantee compatibility or correct operation with higher versions. Refer to the following announcement for additional information: [Microsoft.Extensions.AI.Abstractions NuGet Package Version Upgrade in v24.2.6](https://community.devexpress.com/blogs/news/archive/2025/03/12/important-announcement-microsoft-extensions-ai-abstractions-nuget-package-version-upgrade.aspx).
 
 ### Add DxAIChat component to a Blazor Application
 
