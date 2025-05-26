@@ -1,20 +1,19 @@
 using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.ComponentModel;
-using DevExpress.Blazor.Internal;
-using Microsoft.AspNetCore.Components.WebView.Wpf;
-using DevExpress.AIIntegration.Blazor.Chat;
-using DevExpress.AIIntegration.Services.Assistant;
-using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.DependencyInjection;
-using DevExpress.AIIntegration.Blazor.Chat.WebView;
-using DevExpress.Utils;
 using System.Collections.Generic;
 using System.Drawing;
-using DevExpress.AIIntegration;
-using Microsoft.Extensions.AI;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebView.Wpf;
+using Microsoft.Extensions.AI;
+using Microsoft.Extensions.DependencyInjection;
+using DevExpress.AIIntegration;
+using DevExpress.AIIntegration.Blazor.Chat;
+using DevExpress.AIIntegration.Blazor.Chat.WebView;
+using DevExpress.AIIntegration.Services.Assistant;
+using DevExpress.Blazor.Internal;
 using DevExpress.Xpf.Printing.Native;
 
 namespace WPF_AIChatControl {
@@ -129,7 +128,7 @@ namespace WPF_AIChatControl {
         }
         
         void RaiseMessageSent(MessageSentEventArgs args) {
-            messageSent?.Invoke(this, new AIChatControlMessageSentEventArgs(Chat, args.Content));
+            messageSent?.Invoke(this, new AIChatControlMessageSentEventArgs(Chat, args.Content, CancellationToken.None));
         }
         MarkupString RaiseMarkdownConvert(string text) {
             if(markdownConvert != null) {

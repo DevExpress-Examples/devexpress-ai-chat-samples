@@ -45,15 +45,15 @@
 
     <ItemGroup>
         <PackageReference Include="Azure.AI.OpenAI" Version="2.2.0-beta.1" />
-        <PackageReference Include="DevExpress.Data" Version="24.2.6" />
+        <PackageReference Include="DevExpress.Data" Version="25.1.2-beta" />
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.3.0-preview.1.25161.3" />
         <PackageReference Include="Microsoft.Extensions.AI" Version="9.3.0-preview.1.25161.3" />
-        <PackageReference Include="DevExpress.AIIntegration.Blazor.Chat" Version="24.2.6" />
-        <PackageReference Include="DevExpress.AIIntegration.Blazor.Common" Version="24.2.6" />
-        <PackageReference Include="DevExpress.AIIntegration.Web" Version="24.2.6" />
-        <PackageReference Include="DevExpress.Maui.Editors" Version="24.2.6" />
+        <PackageReference Include="DevExpress.AIIntegration.Blazor.Chat" Version="25.1.2-beta" />
+        <PackageReference Include="DevExpress.AIIntegration.Blazor.Common" Version="25.1.2-beta" />
+        <PackageReference Include="DevExpress.AIIntegration.Web" Version="25.1.2-beta" />
+        <PackageReference Include="DevExpress.Maui.Editors" Version="25.1.2-beta" />
     </ItemGroup>
 
 </Project>

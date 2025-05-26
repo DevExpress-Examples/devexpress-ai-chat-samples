@@ -1,9 +1,9 @@
-﻿using System.ClientModel;
-using Azure;
+﻿using Azure;
 using Azure.AI.OpenAI;
+using Microsoft.Extensions.AI;
 using DevExpress.AI.Samples.Blazor.Components;
 using DevExpress.AIIntegration;
-using Microsoft.Extensions.AI;
+using ReportingApp;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,13 +15,20 @@ string azureOpenAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_EN
 string azureOpenAIKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
 string deploymentName = string.Empty;
 
-IChatClient azureClient = new AzureOpenAIClient(
+var azureClient = new AzureOpenAIClient(
     new Uri(azureOpenAIEndpoint),
-    new AzureKeyCredential(azureOpenAIKey)).AsChatClient(deploymentName);
+    new AzureKeyCredential(azureOpenAIKey));
+
+IChatClient chatClient = azureClient.GetChatClient(deploymentName).AsIChatClient();
+
+var assistantCreator = new AIAssistantCreator(azureClient, deploymentName);
 
 builder.Services.AddDevExpressBlazor();
-builder.Services.AddChatClient(azureClient);
-builder.Services.AddDevExpressAI();
+builder.Services.AddChatClient(chatClient);
+builder.Services.AddSingleton(assistantCreator);
+builder.Services.AddDevExpressAI(config => {
+    config.RegisterOpenAIAssistants(azureClient, deploymentName);
+});
 
 var app = builder.Build();
 
