@@ -15,7 +15,7 @@ namespace DevExpress.AI.Samples.WinBlazor {
             ApplicationConfiguration.Initialize();
             IChatClient asChatClient = new Azure.AI.OpenAI.AzureOpenAIClient(new Uri(AzureOpenAIEndpoint),
                     new System.ClientModel.ApiKeyCredential(AzureOpenAIKey))
-                .AsChatClient("GPT4o");
+                .GetChatClient("GPT4o").AsIChatClient();
             AIExtensionsContainerDesktop.Default.RegisterChatClient(asChatClient);
             Application.Run(new Form1());
         }

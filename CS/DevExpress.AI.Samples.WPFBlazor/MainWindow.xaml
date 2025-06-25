@@ -4,10 +4,42 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 xmlns:local="clr-namespace:WPF_AIChatControl">
+                 xmlns:dxaichat="http://schemas.devexpress.com/winfx/2008/xaml/aichat"
+                 xmlns:chat="clr-namespace:DevExpress.AIIntegration.Blazor.Chat;assembly=DevExpress.AIIntegration.Blazor.Chat.v25.1"
+                 xmlns:system="clr-namespace:System;assembly=mscorlib">
     <Grid>
-        <local:AIChatControl UseStreaming="True"
-                             ContentFormat="Markdown"
-                             MarkdownConvert="AIChatControl_MarkdownConvert" />
+        <dxaichat:AIChatControl x:Name="aiChatControl"
+                    ContentFormat="Markdown" MarkdownConvert="AIChatControl_MarkdownConvert"
+                    UseStreaming="True"
+                    InputEnabled="True"
+                    FileUploadEnabled="True"
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch" 
+                    Margin="10">
+            <dxaichat:AIChatControl.FileUploadSettings>
+                <chat:DxAIChatFileUploadSettings MaxFileSize="5000000" MaxFileCount="5">
+                    <chat:DxAIChatFileUploadSettings.AllowedFileExtensions>
+                        <system:String>.png</system:String>
+                        <system:String>.pdf</system:String>
+                        <system:String>.txt</system:String>
+                    </chat:DxAIChatFileUploadSettings.AllowedFileExtensions>
+                    <chat:DxAIChatFileUploadSettings.FileTypeFilter>
+                        <system:String>image/png</system:String>
+                        <system:String>application/pdf</system:String>
+                        <system:String>text/plain</system:String>
+                    </chat:DxAIChatFileUploadSettings.FileTypeFilter>
+                </chat:DxAIChatFileUploadSettings>
+            </dxaichat:AIChatControl.FileUploadSettings>
+            <dxaichat:AIChatControl.PromptSuggestions>
+                <chat:DxAIChatPromptSuggestion
+                    Title="Birthday Wish"
+                    Text="A warm and cheerful birthday greeting message."
+                    PromptMessage="Write a heartfelt birthday message for a close friend." />
+                <chat:DxAIChatPromptSuggestion
+                    Title="Thank You Note"
+                    Text="A polite thank you note to express gratitude."
+                    PromptMessage="Compose a short thank you note to a colleague who helped with a project." />
+            </dxaichat:AIChatControl.PromptSuggestions>
+        </dxaichat:AIChatControl>
     </Grid>
 </dx:ThemedWindow>

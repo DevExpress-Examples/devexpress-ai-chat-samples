@@ -17,7 +17,7 @@ string deploymentName = string.Empty;
 
 IChatClient azureClient = new AzureOpenAIClient(
     new Uri(azureOpenAIEndpoint),
-    new AzureKeyCredential(azureOpenAIKey)).AsChatClient(deploymentName);
+    new AzureKeyCredential(azureOpenAIKey)).GetChatClient(deploymentName).AsIChatClient();
 
 builder.Services.AddDevExpressBlazor();
 builder.Services.AddChatClient(azureClient);

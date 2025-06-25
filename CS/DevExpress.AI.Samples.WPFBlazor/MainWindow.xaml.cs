@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using DevExpress.AIIntegration.Blazor.Chat.WebView;
+using Microsoft.AspNetCore.Components;
 
 namespace WPF_AIChatControl {
     /// <summary>
@@ -9,7 +10,7 @@ namespace WPF_AIChatControl {
             InitializeComponent();
         }
 
-        void AIChatControl_MarkdownConvert(object sender, DevExpress.AIIntegration.Blazor.Chat.WebView.AIChatControlMarkdownConvertEventArgs e) {
+        void AIChatControl_MarkdownConvert(object sender, AIChatControlMarkdownConvertEventArgs e) {
             e.HtmlText = (MarkupString)Markdig.Markdown.ToHtml(e.MarkdownText);
         }
     }

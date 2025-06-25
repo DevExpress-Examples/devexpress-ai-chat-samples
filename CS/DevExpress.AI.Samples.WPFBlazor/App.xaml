@@ -4,20 +4,4 @@
              xmlns:local="clr-namespace:WPF_AIChatControl"
              xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
              StartupUri="MainWindow.xaml">
-    <Application.Resources>
-        <Style TargetType="local:AIChatControl">
-            <Setter Property="Background" Value="{dxi:ThemeResource ThemeKey='Brush.WindowBackground'}"/>
-            <Setter Property="Foreground" Value="{dxi:ThemeResource ThemeKey='Brush.Foreground.Primary'}"/>
-            <Setter Property="ControlBackground" Value="{dxi:ThemeResource ThemeKey='Brush.Editor.Background'}"/>
-            <Setter Property="ItemBackground" Value="{dxi:ThemeResource ThemeKey='Brush.ListItem.SelectionAlt'}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <local:ChatBlazorWebView x:Name="PART_ChatWebView"
-                                                 Margin="2"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Application.Resources>
 </Application>
