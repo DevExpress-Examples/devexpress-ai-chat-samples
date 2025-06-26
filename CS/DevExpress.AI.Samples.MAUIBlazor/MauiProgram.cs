@@ -1,4 +1,3 @@
-﻿using System.ClientModel;
 using Azure;
 using Azure.AI.OpenAI;
 using DevExpress.Maui;
@@ -23,16 +22,16 @@ public static class MauiProgram {
 
         string azureOpenAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
         string azureOpenAIKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
+        string deploymentName = string.Empty;
 
         builder.Services.AddMauiBlazorWebView();
         builder.Services.AddDevExpressBlazor();
         builder.Services.AddDevExpressAI();
-        builder.Services.AddChatClient(
-            new AzureOpenAIClient(
-                new Uri(azureOpenAIEndpoint), 
-                new ApiKeyCredential(azureOpenAIKey)
-            ).AsChatClient("gpt4o")
-        );
+
+        IChatClient azureClient = new AzureOpenAIClient(
+                                        new Uri(azureOpenAIEndpoint),
+                                        new AzureKeyCredential(azureOpenAIKey)).GetChatClient(deploymentName).AsIChatClient();
+        builder.Services.AddChatClient(azureClient);
         builder.Services.AddSingleton<ISelfEncapsulationService, DxChatEncapsulationService>();
 
 #if DEBUG
