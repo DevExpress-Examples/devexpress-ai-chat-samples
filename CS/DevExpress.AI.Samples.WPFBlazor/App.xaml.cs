@@ -25,7 +25,7 @@ namespace WPF_AIChatControl {
 
             IChatClient asChatClient = new AzureOpenAIClient(new Uri(azureOpenAIEndpoint),
                     new System.ClientModel.ApiKeyCredential(azureOpenAIKey))
-                .GetChatClient("deployment").AsIChatClient();
+                .GetChatClient(deployment).AsIChatClient();
             AIExtensionsContainerDesktop.Default.RegisterChatClient(asChatClient);
         }
     }
