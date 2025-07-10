@@ -1,10 +1,3 @@
-<!-- default badges list -->
-![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/851207927/25.1.3%2B)
-[![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T1251539)
-[![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
-[![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
-<!-- default badges end -->
-
 # Blazor AI Chat - How to add the DevExpress Blazor AI Chat component to your next Blazor, MAUI, WPF, and WinForms application
 
 The DevExpress Blazor AI Chat component ([DxAIChat](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat)) allows you to incorporate AI-powered interactions into any Blazor/MAUI/WPF/WinForms application. Our AI Chat component ships with a variety of high impact features, including:
@@ -39,8 +32,15 @@ var azureClient = new AzureOpenAIClient(
     new Uri(azureOpenAIEndpoint),
     new ApiKeyCredential(azureOpenAIKey));
 
+IChatClient chatClient = azureClient.GetChatClient(deploymentName).AsIChatClient();
+
 builder.Services.AddDevExpressBlazor();
-builder.Services.AddChatClient(azureClient);
+builder.Services.AddChatClient(chatClient);
+builder.Services.AddSingleton(assistantCreator);
+builder.Services.AddDevExpressAI(config => {
+    // Reference the DevExpress.AIIntegration.OpenAI NuGet package to use Open AI Assistants
+    config.RegisterOpenAIAssistants(azureClient, deploymentName);
+});
 ```
 
 File to review: [Program.cs](./CS/DevExpress.AI.Samples.Blazor/Program.cs)
@@ -170,13 +170,18 @@ The DevExpress AI Chat ([DxAIChat](https://docs.devexpress.com/Blazor/DevExpress
 > [!NOTE]  
 > Availability of Azure Open AI Assistants depends on the region. Refer to the following article for more details: [Assistants (Preview)](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#assistants-preview).
 
+In this example, the [AIAssistantCreator.CreateAssistantAsync](./CS/DevExpress.AI.Samples.Blazor/Components/Pages/Chat-Assistant.razor#L22-L25) method uploads a file to OpenAI, configures tool resources, creates an assistant with specified instructions and tools, initializes a new thread, and returns the assistant and thread IDs. In the _Program.cs_ file, add the `AIAssistantCreator` service to the application's service collection:
+
 Add the following code to the _Program.cs_ file to register AI Assistant service in the application:
 
 ```cs
-builder.Services.AddDevExpressAI((config) => {
-    //Reference the DevExpress.AIIntegration.OpenAI NuGet package to use Open AI Assistants
-    config.RegisterOpenAIAssistants(azureClient, "gpt4o"); 
-});
+var azureClient = new AzureOpenAIClient(
+    new Uri(azureOpenAIEndpoint),
+    new AzureKeyCredential(azureOpenAIKey));
+
+var assistantCreator = new AIAssistantCreator(azureClient, deploymentName);
+// ...
+builder.Services.AddSingleton(assistantCreator);
 ```
 
 Include a supplementary document in the project file as an `EmbeddedResource`:
@@ -185,7 +190,7 @@ Include a supplementary document in the project file as an `EmbeddedResource`:
 <EmbeddedResource Include="Data\Restaurant Menu.pdf" />
 ```
 
-Handle the [Initialized](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat.Initialized) event and call the [SetupAssistantAsync](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.IAIChat.SetupAssistantAsync.overloads) method to supply a file to the Open AI Assistant. 
+Handle the [Initialized](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat.Initialized) event and call the [SetupAssistantAsync](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.IAIChat.SetupAssistantAsync(System.String-System.String)) method to set up your AI assistant based on the assistant and thread IDs and supply a file to the assistant. 
 
 ```razor
 <DxAIChat CssClass="my-chat" Initialized="Initialized" />
@@ -195,16 +200,20 @@ Handle the [Initialized](https://docs.devexpress.com/Blazor/DevExpress.AIIntegra
     const string prompt = "...";
 
     async Task Initialized(IAIChat chat) {
-        await chat.SetupAssistantAsync(new OpenAIAssistantOptions(
+        (string assistantId, string threadId) = await assistantCreator.CreateAssistantAsync(
+            Assembly.GetExecutingAssembly().GetManifestResourceStream(DocumentResourceName)!,
             $"{Guid.NewGuid().ToString("N")}.pdf",
-            Assembly.GetExecutingAssembly().GetManifestResourceStream(DocumentResourceName),
-            prompt)
-        );
+            prompt);
+
+        await chat.SetupAssistantAsync(assistantId, threadId);
     }
 }
 ```
 
-File to review: [Chat-Assistant.razor](./CS/DevExpress.AI.Samples.Blazor/Components/Pages/Chat-Assistant.razor)
+Files to review:
+* [Chat-Assistant.razor](./CS/DevExpress.AI.Samples.Blazor/Components/Pages/Chat-Assistant.razor)
+* [AIAssistantCreator](./CS/DevExpress.AI.Samples.Blazor/Services/AIAssistantCreator.cs)
+* [Program.cs](./CS/DevExpress.AI.Samples.Blazor/Program.cs)
 
 ### <a name="integration"></a>Integrate AI Chat into WinForms and WPF Apps
 
