@@ -2,50 +2,50 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-
 body {
+    margin: 0;
     display: flex;
     justify-content: center;
     height: 100vh;
-    background-image: url("./logo.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-color: #E1E1E1;
 }
 
 .my-chat {
-    width: 700px;
+    width: 710px;
     margin: 20px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+    border: 1px solid #d3d3d2;
+    border-radius: 4px;
+    padding: 0 1rem 2rem;
 }
 
-    .my-chat .my-chat-content > p {
-        margin-bottom: 0;
-    }
+.my-chat .my-chat-content > p {
+    margin-bottom: 0;
+}
 
-    .my-chat .my-chat-message {
-        padding: 10px;
-        border-radius: 10px;
-        width: calc(100% - 60px);
-        box-shadow: 0px 2px 6px -2px;
-    }
+.my-chat .my-chat-message {
+    padding: 10px;
+    border-radius: 10px;
+    width: calc(100% - 60px);
+    box-shadow: 0px 2px 6px -2px;
+}
 
-        .my-chat .my-chat-message.my-assistant-message {
-            background-color: rgba(76, 255, 0, 0.2);
-            align-self: self-start;
-        }
+.my-chat .my-chat-message.my-assistant-message {
+    background-color: rgba(76, 255, 0, 0.2);
+    align-self: self-start;
+}
 
-        .my-chat .my-chat-message.my-user-message {
-            background-color: #FFF;
-            align-self: self-end;
-        }
-        .my-chat .my-chat-message.my-error-message {
-            background-color: rgb(255, 0, 0, 0.2);
-            align-self: center;
-        }
+.my-chat .my-chat-message.my-user-message {
+    background-color: #FFF;
+    align-self: self-end;
+}
 
-    .my-chat .my-chat-ui-description {
-        font-weight: bold;
-        font-size: 20px;
-        text-align: center;
-    }
+.my-chat .my-chat-message.my-error-message {
+    background-color: rgb(255, 0, 0, 0.2);
+    align-self: center;
+}
+
+.my-chat .my-chat-ui-description {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
