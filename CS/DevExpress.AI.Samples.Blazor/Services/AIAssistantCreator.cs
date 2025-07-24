@@ -1,14 +1,17 @@
-﻿﻿using System.ClientModel;
+﻿using System.ClientModel;
 using OpenAI;
 using OpenAI.Assistants;
 using OpenAI.Files;
 
 namespace DevExpress.AI.Samples.Blazor {
 #pragma warning disable OPENAI001
-    public class AIAssistantCreator {
+    public class AIAssistantCreator : IDisposable {
         readonly AssistantClient assistantClient;
         readonly OpenAIFileClient fileClient;
         readonly string deployment;
+        AssistantThread thread;
+        Assistant assistant;
+        OpenAIFile file;
 
         public AIAssistantCreator(OpenAIClient client, string deployment) {
             assistantClient = client.GetAssistantClient();
@@ -20,7 +23,7 @@ namespace DevExpress.AI.Samples.Blazor {
             data.Position = 0;
 
             ClientResult<OpenAIFile> fileResponse = await fileClient.UploadFileAsync(data, fileName, FileUploadPurpose.Assistants, ct);
-            OpenAIFile file = fileResponse.Value;
+            file = fileResponse.Value;
 
             var resources = new ToolResources() {
                 CodeInterpreter = new CodeInterpreterToolResources(),
@@ -40,9 +43,27 @@ namespace DevExpress.AI.Samples.Blazor {
             }
 
             ClientResult<Assistant> assistantResponse = await assistantClient.CreateAssistantAsync(deployment, assistantCreationOptions, ct);
+            assistant = assistantResponse.Value;
             ClientResult<AssistantThread> threadResponse = await assistantClient.CreateThreadAsync(cancellationToken: ct);
+            thread = threadResponse.Value;
 
             return (assistantResponse.Value.Id, threadResponse.Value.Id);
+        }
+
+        public void Dispose() {
+            Console.WriteLine("begin dispose");
+            try {
+                if(assistant != null){
+                    Console.WriteLine("assistant not null");
+                    assistantClient?.DeleteAssistant(assistant.Id);
+                    assistantClient?.DeleteThread(thread.Id);
+                    fileClient?.DeleteFile(file.Id);
+                    assistant = null;
+                    thread = null;
+                    file = null;
+                    Console.WriteLine("finish dispose");
+                }
+            } catch {}
         }
     }
 #pragma warning restore OPENAI001
