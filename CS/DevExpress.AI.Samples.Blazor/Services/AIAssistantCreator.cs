@@ -51,17 +51,14 @@ namespace DevExpress.AI.Samples.Blazor {
         }
 
         public void Dispose() {
-            Console.WriteLine("begin dispose");
             try {
                 if(assistant != null){
-                    Console.WriteLine("assistant not null");
                     assistantClient?.DeleteAssistant(assistant.Id);
                     assistantClient?.DeleteThread(thread.Id);
                     fileClient?.DeleteFile(file.Id);
                     assistant = null;
                     thread = null;
                     file = null;
-                    Console.WriteLine("finish dispose");
                 }
             } catch {}
         }
