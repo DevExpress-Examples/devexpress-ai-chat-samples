@@ -4,6 +4,7 @@
 @using AIIntegration.Services.Chat
 @using System.Reflection
 @using Markdig
+@implements IAsyncDisposable
 @inject AIAssistantCreator assistantCreator
 
 <DxAIChat CssClass="my-chat" Initialized="Initialized" ResponseContentFormat="ResponseContentFormat.Markdown">
@@ -29,5 +30,9 @@
 
     MarkupString ToHtml(string text) {
         return (MarkupString)Markdown.ToHtml(text);
+    }
+
+    public async ValueTask DisposeAsync() {
+        await assistantCreator.CleanUpAsync();
     }
 }

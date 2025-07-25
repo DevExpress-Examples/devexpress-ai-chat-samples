@@ -5,13 +5,15 @@ using OpenAI.Files;
 
 namespace DevExpress.AI.Samples.Blazor {
 #pragma warning disable OPENAI001
-    public class AIAssistantCreator : IDisposable {
+    public class AIAssistantCreator : IAsyncDisposable {
         readonly AssistantClient assistantClient;
         readonly OpenAIFileClient fileClient;
         readonly string deployment;
-        AssistantThread thread;
-        Assistant assistant;
-        OpenAIFile file;
+        
+        bool resourcesCreated;
+        AssistantThread? thread;
+        Assistant? assistant;
+        OpenAIFile? file;
 
         public AIAssistantCreator(OpenAIClient client, string deployment) {
             assistantClient = client.GetAssistantClient();
@@ -20,6 +22,7 @@ namespace DevExpress.AI.Samples.Blazor {
         }
 
         public async Task<(string assistantId, string threadId)> CreateAssistantAsync(Stream data, string fileName, string instructions, bool useFileSearchTool = true, CancellationToken ct = default) {
+            await CleanUpAsync();
             data.Position = 0;
 
             ClientResult<OpenAIFile> fileResponse = await fileClient.UploadFileAsync(data, fileName, FileUploadPurpose.Assistants, ct);
@@ -46,21 +49,36 @@ namespace DevExpress.AI.Samples.Blazor {
             assistant = assistantResponse.Value;
             ClientResult<AssistantThread> threadResponse = await assistantClient.CreateThreadAsync(cancellationToken: ct);
             thread = threadResponse.Value;
-
+            resourcesCreated = true;
             return (assistantResponse.Value.Id, threadResponse.Value.Id);
         }
 
-        public void Dispose() {
-            try {
-                if(assistant != null){
-                    assistantClient?.DeleteAssistant(assistant.Id);
-                    assistantClient?.DeleteThread(thread.Id);
-                    fileClient?.DeleteFile(file.Id);
-                    assistant = null;
-                    thread = null;
-                    file = null;
+        public async Task CleanUpAsync() {
+            if(resourcesCreated){
+                try{
+                    if(assistant != null){
+                        await assistantClient.DeleteAssistantAsync(assistant.Id);
+                        assistant = null;
+                    }
+
+                    if(thread != null){
+                        await assistantClient.DeleteThreadAsync(thread.Id);
+                        thread = null;
+                    }
+
+                    if(file != null){
+                        await fileClient.DeleteFileAsync(file.Id);
+                        file = null;
+                    }
+
+                    resourcesCreated = false;
                 }
-            } catch {}
+                catch{}
+            }
+        }
+
+        public async ValueTask DisposeAsync() {
+            await CleanUpAsync();
         }
     }
 #pragma warning restore OPENAI001
