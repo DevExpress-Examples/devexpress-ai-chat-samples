@@ -1,5 +1,4 @@
 ﻿using System.ClientModel;
-using System.Collections.Concurrent;
 using OpenAI;
 using OpenAI.Assistants;
 using OpenAI.Files;

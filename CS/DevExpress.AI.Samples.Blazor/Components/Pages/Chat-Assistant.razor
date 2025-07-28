@@ -5,7 +5,7 @@
 @using System.Reflection
 @using Markdig
 @implements IAsyncDisposable
-@inject AIAssistantManager AssistantManager
+@inject AIAssistantManager assistantManager
 
 <DxAIChat CssClass="my-chat" Initialized="Initialized" ResponseContentFormat="ResponseContentFormat.Markdown">
     <MessageContentTemplate>
@@ -23,7 +23,7 @@
     string? fileId;
 
     async Task Initialized(IAIChat chat) {
-        (assistantId, threadId, fileId) = await AssistantManager.CreateAssistantAsync(
+        (assistantId, threadId, fileId) = await assistantManager.CreateAssistantAsync(
             Assembly.GetExecutingAssembly().GetManifestResourceStream(DocumentResourceName)!,
             $"{Guid.NewGuid().ToString("N")}.pdf",
             prompt);
@@ -36,6 +36,6 @@
     }
 
     public async ValueTask DisposeAsync() {
-        await AssistantManager.CleanUpAssistantAsync(assistantId, threadId, fileId);
+        await assistantManager.CleanUpAssistantAsync(assistantId, threadId, fileId);
     }
 }
