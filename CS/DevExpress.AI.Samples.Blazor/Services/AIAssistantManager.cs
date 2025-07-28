@@ -6,26 +6,18 @@ using OpenAI.Files;
 
 namespace DevExpress.AI.Samples.Blazor {
 #pragma warning disable OPENAI001
-
-    public class AssistantResources {
-        public Assistant? Assistant { get; set; }
-        public AssistantThread? Thread { get; set; }
-        public OpenAIFile? File { get; set; }
-    }
-
-    public class AIAssistantCreator : IAsyncDisposable {
+    public class AIAssistantManager {
         readonly AssistantClient assistantClient;
         readonly OpenAIFileClient fileClient;
         readonly string deployment;
-        readonly ConcurrentDictionary<string, AssistantResources> assistantsResources = new();
 
-        public AIAssistantCreator(OpenAIClient client, string deployment) {
+        public AIAssistantManager(OpenAIClient client, string deployment) {
             assistantClient = client.GetAssistantClient();
             fileClient = client.GetOpenAIFileClient();
             this.deployment = deployment;
         }
 
-        public async Task<(string assistantId, string threadId)> CreateAssistantAsync(Stream data, string fileName, string instructions, bool useFileSearchTool = true, CancellationToken ct = default) {
+        public async Task<(string assistantId, string threadId, string fileId)> CreateAssistantAsync(Stream data, string fileName, string instructions, bool useFileSearchTool = true, CancellationToken ct = default) {
             data.Position = 0;
 
             ClientResult<OpenAIFile> fileResponse = await fileClient.UploadFileAsync(data, fileName, FileUploadPurpose.Assistants, ct);
@@ -53,39 +45,24 @@ namespace DevExpress.AI.Samples.Blazor {
             ClientResult<AssistantThread> threadResponse = await assistantClient.CreateThreadAsync(cancellationToken: ct);
             var thread = threadResponse.Value;
 
-            assistantsResources.TryAdd(assistant.Id, new() {
-                Assistant = assistant,
-                Thread = threadResponse.Value,
-                File = fileResponse.Value
-            });
-            return (assistant.Id, thread.Id);
+            return (assistant.Id, thread.Id, file.Id);
         }
 
-        public async Task CleanUpAssistantAsync(string assistantId) {
-            if(assistantsResources.TryRemove(assistantId, out var resources)) {
-                try{
-                    if(resources.Assistant != null){
-                        await assistantClient.DeleteAssistantAsync(resources.Assistant.Id);
-                    }
-
-                    if(resources.Thread != null){
-                        await assistantClient.DeleteThreadAsync(resources.Thread.Id);
-                    }
-
-                    if(resources.File != null){
-                        await fileClient.DeleteFileAsync(resources.File.Id);
-                    }
+        public async Task CleanUpAssistantAsync(string? assistantId, string? threadId, string? fileId) {
+            try{
+                if(!string.IsNullOrEmpty(assistantId)){
+                    await assistantClient.DeleteAssistantAsync(assistantId);
                 }
-                catch{}
-            }
-        }
 
-        public async ValueTask DisposeAsync() {
-            var assistantIds = assistantsResources.Keys.ToList();
-            foreach (var assistantId in assistantIds){
-                await CleanUpAssistantAsync(assistantId);
+                if(!string.IsNullOrEmpty(threadId)){
+                    await assistantClient.DeleteThreadAsync(threadId);
+                }
+
+                if(!string.IsNullOrEmpty(fileId)){
+                    await fileClient.DeleteFileAsync(fileId);
+                }
             }
-            assistantsResources.Clear();
+            catch{}
         }
     }
 #pragma warning restore OPENAI001
