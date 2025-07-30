@@ -206,7 +206,7 @@ Handle the [Initialized](https://docs.devexpress.com/Blazor/DevExpress.AIIntegra
     const string prompt = "...";
 
     async Task Initialized(IAIChat chat) {
-        (string assistantId, string threadId) = await assistantCreator.CreateAssistantAsync(
+        (string assistantId, string threadId) = await assistantManager.CreateAssistantAsync(
             Assembly.GetExecutingAssembly().GetManifestResourceStream(DocumentResourceName)!,
             $"{Guid.NewGuid().ToString("N")}.pdf",
             prompt);
@@ -218,7 +218,7 @@ Handle the [Initialized](https://docs.devexpress.com/Blazor/DevExpress.AIIntegra
 
 Files to review:
 * [Chat-Assistant.razor](./CS/DevExpress.AI.Samples.Blazor/Components/Pages/Chat-Assistant.razor)
-* [AIAssistantCreator](./CS/DevExpress.AI.Samples.Blazor/Services/AIAssistantCreator.cs)
+* [AIAssistantManager](./CS/DevExpress.AI.Samples.Blazor/Services/AIAssistantManager.cs)
 * [Program.cs](./CS/DevExpress.AI.Samples.Blazor/Program.cs)
 
 ### <a name="integration"></a>Integrate AI Chat into WinForms and WPF Apps
