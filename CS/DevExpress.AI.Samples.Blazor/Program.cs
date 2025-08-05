@@ -20,13 +20,13 @@ var azureClient = new AzureOpenAIClient(
     new Uri(azureOpenAIEndpoint),
     new AzureKeyCredential(azureOpenAIKey));
 
-var assistantCreator = new AIAssistantCreator(azureClient, deploymentName);
+var assistantManager = new AIAssistantManager(azureClient, deploymentName);
 
 IChatClient chatClient = azureClient.GetChatClient(deploymentName).AsIChatClient();
 
 builder.Services.AddDevExpressBlazor();
 builder.Services.AddChatClient(chatClient);
-builder.Services.AddSingleton(assistantCreator);
+builder.Services.AddSingleton(assistantManager);
 builder.Services.AddDevExpressAI(config => {
     config.RegisterOpenAIAssistants(azureClient, deploymentName);
 });

@@ -3,6 +3,7 @@
 @using DevExpress.AIIntegration.Blazor.Chat
 @using AIIntegration.Services.Chat
 @using System.Reflection
+@using System.Text.RegularExpressions
 @using Markdig
 @implements IAsyncDisposable
 @inject AIAssistantManager assistantManager
@@ -32,7 +33,7 @@
     }
 
     MarkupString ToHtml(string text) {
-        return (MarkupString)Markdown.ToHtml(text);
+        return (MarkupString)Markdown.ToHtml(Regex.Replace(text, @"\【.*?】", ""));
     }
 
     public async ValueTask DisposeAsync() {
