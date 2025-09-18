@@ -37,12 +37,14 @@ namespace DevExpress.AI.Samples.WinBlazor
                 new PromptSuggestion(
                     title: "Birthday Wish",
                     text: "A warm and cheerful birthday greeting message.",
-                    prompt: "Write a heartfelt birthday message for a close friend."),
+                    prompt: "Write a heartfelt birthday message for a close friend.",
+                    sendOnClick: false),
 
                 new PromptSuggestion(
                     "Thank You Note",
                     "A polite thank you note to express gratitude.",
-                    "Compose a short thank you note to a colleague who helped with a project.")
+                    "Compose a short thank you note to a colleague who helped with a project.",
+                    false)
             });
 
             Controls.Add(chat);
