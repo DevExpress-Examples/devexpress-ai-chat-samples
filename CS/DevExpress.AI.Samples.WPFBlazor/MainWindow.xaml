@@ -5,7 +5,7 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:dxaichat="http://schemas.devexpress.com/winfx/2008/xaml/aichat"
-                 xmlns:chat="clr-namespace:DevExpress.AIIntegration.Blazor.Chat;assembly=DevExpress.AIIntegration.Blazor.Chat.v25.1"
+                 xmlns:chat="clr-namespace:DevExpress.AIIntegration.Blazor.Chat;assembly=DevExpress.AIIntegration.Blazor.Chat.v25.2"
                  xmlns:system="clr-namespace:System;assembly=mscorlib">
     <Grid>
         <dxaichat:AIChatControl x:Name="aiChatControl"
@@ -43,3 +43,4 @@
         </dxaichat:AIChatControl>
     </Grid>
 </dx:ThemedWindow>
+
