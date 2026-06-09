@@ -7,12 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <PackageReference Include="Azure.AI.OpenAI" Version="2.2.0-beta.5" />
-      <PackageReference Include="DevExpress.AIIntegration.Blazor.Chat.WebView" Version="25.2.*" />
-      <PackageReference Include="DevExpress.AIIntegration.Wpf.Chat" Version="25.2.*" />
-      <PackageReference Include="DevExpress.Wpf.ThemesLW" Version="25.2.*" />
+      <PackageReference Include="Azure.AI.OpenAI" Version="2.9.0-beta.1" />
+      <PackageReference Include="DevExpress.AIIntegration.Blazor.Chat.WebView" Version="26.1.*-*" />
+      <PackageReference Include="DevExpress.AIIntegration.Wpf.Chat" Version="26.1.*-*" />
+      <PackageReference Include="DevExpress.Wpf.ThemesLW" Version="26.1.*-*" />
       <PackageReference Include="Markdig" Version="0.41.1" />
-      <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.7.1-preview.1.25365.4" />
+      <PackageReference Include="Microsoft.Extensions.AI" Version="10.6.0" />
+      <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="10.6.0" />
   </ItemGroup>
 
 </Project>
