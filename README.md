@@ -20,9 +20,9 @@ This example adds a [DxAIChat](https://docs.devexpress.com/Blazor/DevExpress.AII
 ### Register AI Service
 
 > [!NOTE]  
-> DevExpress AI-powered extensions follow the "bring your own key" principle. DevExpress does not offer a REST API and does not ship any built-in LLMs/SLMs. You need an active Azure/Open AI subscription to obtain the REST API endpoint, key, and model deployment name. Specify these variables (the `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` environment variables) at application startup to register AI clients and enable DevExpress AI-powered Extensions in your application.
+> DevExpress AI-powered extensions follow the "bring your own key" principle. DevExpress does not offer a REST API and does not ship any built-in LLMs/SLMs. You need an active Azure/Open AI subscription to obtain the REST API endpoint, key, and model deployment name. Specify these variables (`AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` environment variables) at application startup to register AI clients and enable DevExpress AI-powered Extensions in your application.
 >
-> If these environment variables are not set, the sample falls back to the DevExpress demo proxy (`https://api.devexpress.com/demo-openai`) so you can try it out of the box. The demo proxy is rate-limited and intended for evaluation only — use your own Azure/OpenAI credentials for development.
+> If these environment variables are not set, the sample falls back to the DevExpress demo proxy (`https://api.devexpress.com/demo-openai`) so that you can try it out of the box. The demo proxy is rate-limited and intended for evaluation only — use your own Azure/OpenAI credentials for development.
 
 Add the following code to the _Program.cs_ file to register the AI Chat service in your application:
 
@@ -67,11 +67,11 @@ File to review: [Program.cs](./CS/DevExpress.AI.Samples.Blazor/Program.cs)
 > * `Microsoft.Extensions.AI.OpenAI` | **10.6.0**
 > * `Azure.AI.OpenAI` | **2.9.0-beta.1**
 >
-> We do not guarantee compatibility or correct operation with higher versions. Refer to the following announcement for additional information: [DevExpress.AIIntegration moves to a stables version](https://supportcenter.devexpress.com/ticket/details/t1292705/devexpress-aiintegration-references-stable-versions-of-microsoft-ai-packages).
+> We do not guarantee compatibility or correct operation with higher versions. Refer to the following announcement for additional information: [DevExpress.AIIntegration references stable versions of Microsoft AI packages](https://supportcenter.devexpress.com/ticket/details/t1292705/devexpress-aiintegration-references-stable-versions-of-microsoft-ai-packages).
 
 ### Add DxAIChat component to a Blazor Application
 
-Add a `<DxAIChat>…</DxAIChat>` markup to a .razor file:
+Add `<DxAIChat>…</DxAIChat>` markup to a .razor file:
 
 ```razor
 @using DevExpress.AIIntegration.Blazor.Chat
@@ -94,7 +94,7 @@ File to review: [Chat.razor](./CS/DevExpress.AI.Samples.Blazor/Components/Pages/
 
 ### Customize message appearance and empty message area
 
-[DxAIChat](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat) component includes the following message customization properties:
+The [DxAIChat](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat) component includes the following message customization properties:
 
 * [MessageTemplate](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat.MessageTemplate) - specifies the template used for message bubbles.
 * [MessageContentTemplate](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat.MessageContentTemplate) - specifies the template used for message bubble content.
