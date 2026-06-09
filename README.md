@@ -20,7 +20,9 @@ This example adds a [DxAIChat](https://docs.devexpress.com/Blazor/DevExpress.AII
 ### Register AI Service
 
 > [!NOTE]  
-> DevExpress AI-powered extensions follow the "bring your own key" principle. DevExpress does not offer a REST API and does not ship any built-in LLMs/SLMs. You need an active Azure/Open AI subscription to obtain the REST API endpoint, key, and model deployment name. These variables must be specified at application startup to register AI clients and enable DevExpress AI-powered Extensions in your application.
+> DevExpress AI-powered extensions follow the "bring your own key" principle. DevExpress does not offer a REST API and does not ship any built-in LLMs/SLMs. You need an active Azure/Open AI subscription to obtain the REST API endpoint, key, and model deployment name. Specify these variables (the `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` environment variables) at application startup to register AI clients and enable DevExpress AI-powered Extensions in your application.
+>
+> If these environment variables are not set, the sample falls back to the DevExpress demo proxy (`https://api.devexpress.com/demo-openai`) so you can try it out of the box. The demo proxy is rate-limited and intended for evaluation only — use your own Azure/OpenAI credentials for development.
 
 Add the following code to the _Program.cs_ file to register the AI Chat service in your application:
 
@@ -31,8 +33,12 @@ using Microsoft.Extensions.AI;
 using System.ClientModel;
 
 string azureOpenAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+if (string.IsNullOrEmpty(azureOpenAIEndpoint))
+    azureOpenAIEndpoint = "https://api.devexpress.com/demo-openai";//DevExpress demo proxy-server
 string azureOpenAIKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
-string deploymentName = string.Empty;
+if (string.IsNullOrEmpty(azureOpenAIKey))
+    azureOpenAIKey = "DEMO";//Demo key
+string deploymentName = "demo";
 ...
 var azureClient = new AzureOpenAIClient(
     new Uri(azureOpenAIEndpoint),
@@ -55,11 +61,11 @@ File to review: [Program.cs](./CS/DevExpress.AI.Samples.Blazor/Program.cs)
 > Refer to the following help topic for instructions on registering OpenAI, Azure OpenAI, Ollama, and Semantic Kernel: [Register AI Clients](https://docs.devexpress.com/CoreLibraries/405204/ai-powered-extensions#register-ai-clients).
 
 > [!Note]
-> We use the following versions of Microsoft AI packages in our `v25.2.2+` source code:
+> We use the following versions of Microsoft AI packages in our `v26.1.3+` source code:
 >
-> * `Microsoft.Extensions.AI` | **9.7.1**
-> * `Microsoft.Extensions.AI.OpenAI` | **9.7.1-preview.1.25365.4**
-> * `Azure.AI.OpenAI` | **2.2.0-beta.5**
+> * `Microsoft.Extensions.AI` | **10.6.0**
+> * `Microsoft.Extensions.AI.OpenAI` | **10.6.0**
+> * `Azure.AI.OpenAI` | **2.9.0-beta.1**
 >
 > We do not guarantee compatibility or correct operation with higher versions. Refer to the following announcement for additional information: [DevExpress.AIIntegration moves to a stables version](https://supportcenter.devexpress.com/ticket/details/t1292705/devexpress-aiintegration-references-stable-versions-of-microsoft-ai-packages).
 
