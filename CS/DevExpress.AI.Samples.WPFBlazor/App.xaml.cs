@@ -20,8 +20,12 @@ namespace WPF_AIChatControl {
         static void SetupAzureOpenAI() {
 
             string azureOpenAIEndpoint = SafeEnvironment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+            if (string.IsNullOrEmpty(azureOpenAIEndpoint))
+                azureOpenAIEndpoint = "https://api.devexpress.com/demo-openai";//DevExpress demo proxy-server
             string azureOpenAIKey = SafeEnvironment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
-            string deployment = "gpt-4o-mini";
+            if (string.IsNullOrEmpty(azureOpenAIKey))
+                azureOpenAIKey = "DEMO";//Demo key
+            string deployment = "demo";
 
             IChatClient asChatClient = new AzureOpenAIClient(new Uri(azureOpenAIEndpoint),
                     new System.ClientModel.ApiKeyCredential(azureOpenAIKey))

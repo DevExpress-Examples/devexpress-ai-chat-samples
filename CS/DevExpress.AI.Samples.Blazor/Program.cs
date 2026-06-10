@@ -13,8 +13,12 @@ builder.Services.AddRazorComponents()
 .AddInteractiveServerComponents();
 
 string azureOpenAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+if (string.IsNullOrEmpty(azureOpenAIEndpoint))
+    azureOpenAIEndpoint = "https://api.devexpress.com/demo-openai";//DevExpress demo proxy-server
 string azureOpenAIKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
-string deploymentName = string.Empty;
+if (string.IsNullOrEmpty(azureOpenAIKey))
+    azureOpenAIKey = "DEMO";//Demo key
+string deploymentName = "demo";
 
 var azureClient = new AzureOpenAIClient(
     new Uri(azureOpenAIEndpoint),
