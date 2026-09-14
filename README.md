@@ -113,7 +113,7 @@ The [DxAIChat](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazo
                 <span>Loading...</span>
             } else {
                 <div class="my-chat-content">
-                    @context.Content
+                    @context.Text
                 </div>
             }
         </div>
@@ -135,7 +135,7 @@ To display rich formatted messages, set the [ResponseContentFormat](https://docs
 <DxAIChat CssClass="my-chat" RenderMode="AnswerRenderMode.Markdown">
     <MessageContentTemplate>
         <div class="my-chat-content">
-            @ToHtml(context.Content)
+            @ToHtml(context.Text)
         </div>
     </MessageContentTemplate>
 </DxAIChat>
@@ -284,4 +284,3 @@ Folders to review: [DevExpress.AI.Samples.WinBlazor](./CS/DevExpress.AI.Samples.
 
 (you will be redirected to DevExpress.com to submit your response)
 <!-- feedback end -->
-
