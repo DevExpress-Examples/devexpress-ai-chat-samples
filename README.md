@@ -63,13 +63,13 @@ File to review: [Program.cs](./CS/DevExpress.AI.Samples.Blazor/Program.cs)
 > [!Note]
 > We use the following versions of Microsoft AI packages in our `v26.1.3+` source code:
 >
-> * `Microsoft.Extensions.AI` | **10.6.0**
-> * `Microsoft.Extensions.AI.OpenAI` | **10.6.0**
-> * `Azure.AI.OpenAI` | **2.9.0-beta.1**
+> * `Microsoft.Extensions.AI` | **v10.6.0**
+> * `Microsoft.Extensions.AI.OpenAI` | **v10.6.0**
+> * `Azure.AI.OpenAI` | **v2.9.0-beta.1**
 >
 > We do not guarantee compatibility or correct operation with higher versions. Refer to the following announcement for additional information: [DevExpress.AIIntegration references stable versions of Microsoft AI packages](https://supportcenter.devexpress.com/ticket/details/t1292705/devexpress-aiintegration-references-stable-versions-of-microsoft-ai-packages).
 
-### Add DxAIChat component to a Blazor Application
+### Add DxAIChat Component to a Blazor Application
 
 Add `<DxAIChat>…</DxAIChat>` markup to a .razor file:
 
@@ -92,7 +92,7 @@ Add `<DxAIChat>…</DxAIChat>` markup to a .razor file:
 
 File to review: [Chat.razor](./CS/DevExpress.AI.Samples.Blazor/Components/Pages/Chat.razor)
 
-### Customize message appearance and empty message area
+### Customize Message Appearance and Empty Message Area
 
 The [DxAIChat](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat) component includes the following message customization properties:
 
@@ -123,7 +123,7 @@ The [DxAIChat](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazo
 
 File to review: [Chat-CustomMessage.razor](./CS/DevExpress.AI.Samples.Blazor/Components/Pages/Chat-CustomMessage.razor), [Chat-CustomEmptyState.razor](./CS/DevExpress.AI.Samples.Blazor/Components/Pages/Chat-CustomEmptyState.razor)
 
-### Text or markdown response
+### Text or Markdown Response
 
 The AI service uses plain text as the default response format.
 
@@ -147,7 +147,7 @@ To display rich formatted messages, set the [ResponseContentFormat](https://docs
 }
 ```
 
-### Manual message processing
+### Manual Message Processing
 
 When a user sends a message to the chat, the [MessageSent](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat.MessageSent) event fires. Handle the event to manually process this action. 
 You can use the [Content](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.MessageSentEventArgs.Content) event argument to access user input and call the [SendMessage](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat.SendMessage(System.String-Microsoft.Extensions.AI.ChatRole) method to send another message to the chat.
@@ -165,7 +165,7 @@ You can use the [Content](https://docs.devexpress.com/Blazor/DevExpress.AIIntegr
 File to review: [Chat-MessageSent.razor](./CS/DevExpress.AI.Samples.Blazor/Components/Pages/Chat-MessageSent.razor)
 
 
-### Streaming response
+### Streaming Response
 
 After a user sends a request, the AI client generates and sends the entire response back. This operation may be time consuming. To make the chat appear more responsive, set the [UseStreaming](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat.UseStreaming) property to `true`. In this instance, the AI client transmits parts of the response as it becomes available and the chat component adds these parts to the display message.
 
@@ -175,7 +175,7 @@ After a user sends a request, the AI client generates and sends the entire respo
 
 File to review: [Chat-Streaming.razor](./CS/DevExpress.AI.Samples.Blazor/Components/Pages/Chat-Streaming.razor)
 
-### Compatibility with OpenAI assistants
+### Compatibility with OpenAI Assistants
 
 The DevExpress AI Chat ([DxAIChat](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat)) component supports [OpenAI Assistants](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-azure-openai-service-assistants-public-preview/ba-p/4143217). You can specify a model and supply supplementary documents (external knowledge). OpenAI parses these documents and searches through them to retrieve relevant content to answer user queries.
 
