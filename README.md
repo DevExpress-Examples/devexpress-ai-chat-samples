@@ -4,7 +4,7 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
-# Blazor AI Chat - How to add the DevExpress Blazor AI Chat component to your next Blazor, MAUI, WPF, and WinForms application
+# Blazor AI Chat - How to Add the DevExpress Blazor AI Chat Component to Your Next Blazor, MAUI, WPF, and WinForms Application
 
 The DevExpress Blazor AI Chat component ([DxAIChat](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat)) allows you to incorporate AI-powered interactions into any Blazor/MAUI/WPF/WinForms application. Our AI Chat component ships with a variety of high impact features, including:
 
