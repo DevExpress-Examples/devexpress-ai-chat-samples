@@ -149,15 +149,17 @@ To display rich formatted messages, set the [ResponseContentFormat](https://docs
 
 ### Manual Message Processing
 
-When a user sends a message to the chat, the [MessageSent](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat.MessageSent) event fires. Handle the event to manually process this action. 
-You can use the [Content](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.MessageSentEventArgs.Content) event argument to access user input and call the [SendMessage](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat.SendMessage(System.String-Microsoft.Extensions.AI.ChatRole) method to send another message to the chat.
+When a user sends a message to the chat, the [MessageSending](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat.MessageSending) event fires. Handle the event to manually process this action. 
+You can use the [Text](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.MessageSendingEventArgs.Text) event argument to access user input and call the [AppendMessageAsync](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.IAIChat.AppendMessageAsync(String--ChatRole--List-IAIChatMessageContextItem-)) method to add messages to the chat. Set the `Cancel` event argument to `true` to prevent the chat from sending the message to the AI service.
 
 ```razor
-<DxAIChat CssClass="my-chat" MessageSent="MessageSent" />
+<DxAIChat CssClass="my-chat" MessageSending="MessageSending" />
 
 @code {
-    async Task MessageSent(MessageSentEventArgs args) {
-        await args.Chat.SendMessage($"Processed: {args.Content}", Microsoft.Extensions.AI.ChatRole.Assistant);
+    async Task MessageSending(MessageSendingEventArgs args) {
+        args.Cancel = true;
+        await args.Chat.AppendMessageAsync(args.Text, ChatRole.User);
+        await args.Chat.AppendMessageAsync($"Processed: {args.Text}", ChatRole.Assistant);
     }
 }
 ```

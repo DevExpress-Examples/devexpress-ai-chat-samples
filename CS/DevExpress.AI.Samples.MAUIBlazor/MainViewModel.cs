@@ -11,7 +11,7 @@ partial class MainViewModel : ObservableObject {
     [RelayCommand(CanExecute = nameof(CanSendMessage))]
     async Task SendMessageAsync() {
         var service = DxChatEncapsulationService.Instance;
-        await service.DxChatUI?.SendMessage(Message, ChatRole.User);
+        await service.DxChatUI?.SendMessageAsync(Message);
         Message = null;
     }
 
